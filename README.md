@@ -1,25 +1,48 @@
 
-Description:
-This repository contains two folders.
+Repository Description
+
+This repository contains two modules:
+
 1. Surface_Hopping_in_Active_Space
-   The folder Surface_Hopping_in_Active_Space contains all the files necessary to reproduce the population data of Surface_Hopping_In_Active_Space, as well as the Marcus theory.
-   The input file for both Surface_Hopping_In_Active_Space and Marcus theory is AFSSH.inp. The input file is self-explanatory.
-   To run the surface hopping simulation, choose appropriate parallelization in the first line of the input file, then type ./run.
-   When the jobs finish, open AFSSH.inp select the first line as 3 and run ./run to average the populations.
-   This will generate a file pop.out containing the population of spin-up and spin-down states with time.
-   Matrix_evolve.py is a short script to get the population of four different Marcus states. On running this file, depending on the input, you can get the results of populations of different states as in the paper.
-	 mod_afssh.f90 contains all the subroutines to run surface hopping.
-	 
+
+This directory includes all files required to reproduce the population dynamics reported for Surface Hopping in Active Space, as well as the Marcus theory results.
+
+Input file: AFSSH.inp (self-explanatory).
+
+Running the simulations:
+• Set the desired parallelization in the first line of AFSSH.inp, then execute:
+
+./run
+
+
+• After all jobs complete, set the first line of AFSSH.inp to 3 and run ./run again to compute the averaged populations.
+• This will generate pop.out, which contains the time-resolved population of the spin-up and spin-down states.
+
+Marcus theory states:
+The script Matrix_evolve.py computes the populations of the four different Marcus states. Running the script with the desired input configuration will reproduce the population data shown in the manuscript.
+
+Codebase:
+The file mod_afssh.f90 contains the subroutines required to execute the surface hopping simulations.
+
 2. IESH_2025
-  	fort.23 is the input file where all quantities have to be input in atomic units.
-    Running this script would output the population vs time file in each folder as fort . 104.
-    To run this, use ./myscript.sh
-    To average the population, simply run the average.py
-   
-   
+
+Input file: fort.23 (all parameters must be specified in atomic units).
+
+Running the simulations:
+
+./myscript.sh
 
 
+This will produce the population-versus-time file fort.104 in each simulation directory.
 
-Credits:
-I, Chinmay Pradhan, have developed the code for Surface hopping in active space using the AFSSH code, which was created by Amber Jain and Aarti Sindhu in Prof. Amber Jain's group at IIT Bombay.
-The link to that AFSSH code is https://github.com/amber-jain-group-iitb/AFSSH-7site-anharmonic-bath.
+Population averaging:
+
+python3 average.py
+
+The output.txt will contain the averaged population of the molecular electronic state.
+
+Credits
+
+The implementation of Surface Hopping in Active Space was developed by Chinmay Pradhan, building on the AFSSH code created by Amber Jain and Aarti Sindhu in Prof. Amber Jain’s group, IIT Bombay.
+The original AFSSH repository is available at:
+https://github.com/amber-jain-group-iitb/AFSSH-7site-anharmonic-bath
